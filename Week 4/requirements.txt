@@ -1,0 +1,21 @@
+array[i][j]
+Beginnen links boven = array[0][0]
+Per loop, 1 array element verder. 
+    Als wij naar boven gaan i--
+    Als wij naar beneden gaan dan i++
+    Als wij naar rechts gaan dan j++
+    Als wij naar links gaan dan j--
+Dus elke loop random kiezen 1 van die 4.
+Ook checken als daar al gewandeld is.
+Ook checken als het niet buiten de array komt
+Waar gewandeld is, letter plaatsen (A t/m Z)
+    dus wij loopen 26 keer
+
+
+
+Hoe gaan wij richting kiezen?
+Kies random getal van 0 tot 3
+0 = i++
+1 = i--
+2 = j++
+3 = j--

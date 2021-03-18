@@ -8,12 +8,14 @@ int main(){
     int j = 0;
     char k = 65;
     int try = 0;
+    int time_ = time(0);
     srand(time(0));
+    //printf("%d\n", time_);
 
      //Vul array met '.'
     for (int i=0; i < 10; i++){
         for (int j=0; j < 10; j++){
-            array[i][j] = 46;
+            array[i][j] = '.';
         }
     }
 
@@ -21,7 +23,7 @@ int main(){
     array[0][0] = 65;
 
 
-    for (k = 65; k <= 89;){
+    for (k = 'A'; k < 'Z';){
         int richting = rand() % 4;
         int links = j;
         links--;
@@ -33,7 +35,7 @@ int main(){
         rechts++;
         switch (richting){
         case 0:
-            if (array[beneden][j] == 46 && beneden < 10){
+            if (array[beneden][j] == '.' && beneden < 10){
             i++;
             k++;
             array[i][j] = k;
@@ -42,7 +44,7 @@ int main(){
             }
             else{break;}
         case 1:
-            if (!(boven < 0) && array[boven][j] == 46 && boven < 10){
+            if (!(boven < 0) && array[boven][j] == '.' && boven < 10){
                 i--;
                 k++;
                 array[i][j] = k;
@@ -51,7 +53,7 @@ int main(){
             }
             else{break;}
         case 2:
-            if(array[i][rechts] == 46 && rechts < 10){
+            if(array[i][rechts] == '.' && rechts < 10){
             j++;
             k++;
             array[i][j] = k;
@@ -60,7 +62,7 @@ int main(){
             }
             else{break;}
         case 3:
-            if(!(links < 0) && array[i][links] == 46 && links < 10){
+            if(!(links < 0) && array[i][links] == '.' && links < 10){
                 j--;
                 k++;
                 array[i][j] = k;
@@ -72,12 +74,11 @@ int main(){
             break;
         }
         try++;
-        if (try >= 10){
+        if (try >= 20){
             break;
         }
 
     }
-
     //Wijs array zodat we het kunnen zien
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
@@ -85,6 +86,4 @@ int main(){
         }
         printf("\n");
     }
-
-    system("PAUSE");
 }
