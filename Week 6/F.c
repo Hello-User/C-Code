@@ -5,15 +5,19 @@
 //int isLeeg(struct Queue Q);
 //void print_list(node_t * head);
 
+
+typedef struct Node{
+    int getal;
+    struct Node* next;
+}node_t;
+struct Queue{
+    struct Node* head;
+    struct Node* tail;
+} Queues;
+
+void print_list(node_t *head);
+
 int main(){
-    typedef struct Node{
-        int getal;
-        struct Node* next;
-    }node_t;
-    struct Queue{
-        struct Node* head;
-        struct Node* tail;
-    } Queues;
     node_t *head = NULL;
     head = (node_t *) malloc(sizeof(node_t));
     if (head == NULL){
@@ -25,14 +29,13 @@ int main(){
     head->next->next = (node_t *) malloc(sizeof(node_t));
     head->next->next->getal = 10;
     head->next->next->next= NULL;
-
-    void print_list(node_t *head) {
-        node_t * current = head;
-
-        while (current != NULL) {
-            printf("%d\n", current->getal);
-            current = current->next;
-        }
-    }
     print_list(head);
+}
+
+void print_list(node_t *head) {
+    node_t * current = head;
+    while (current != NULL) {
+        printf("%d\n", current->getal);
+        current = current->next;
+    }
 }

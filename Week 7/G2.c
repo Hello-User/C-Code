@@ -14,6 +14,7 @@ struct Queue{
 struct Queue* copy (struct Queue *Q);
 void voegToe (struct Queue *q, int x);
 int isLeeg(struct Queue *q);
+void print_list(struct node *head);
 
 int main(){
     struct Queue *q;
@@ -24,34 +25,36 @@ int main(){
     for(i=0; i<3; i++){
         voegToe(q, i);
     }
-    printf("%p\n", copy(q));
+    printf("Address nieuwe queue: %p\n", copy(q));
     q->head = NULL;
 }
 
 struct Queue* copy (struct Queue *Q){
     struct Queue *temp;
     temp = (struct Queue*) malloc(sizeof(struct Queue));
-    if(Q->head == NULL){
+    if(Q->head == NULL){ //check if Q exists
         temp->head == NULL;
     }
     else{
         struct node *tempNode = malloc(sizeof(struct node));
-        tempNode->getal = Q->head->getal;
+        tempNode->getal = Q->head->getal; //create and initialize node
         struct node *QHead = malloc(sizeof(struct node));
-        QHead = Q->head;
+        QHead = Q->head; //create node
         struct node *n = malloc(sizeof(struct node));
-        n = tempNode;
+        n = tempNode; //create new node and assign it memory values of tempNode.
         QHead = QHead->next;
-        while(QHead != NULL){
+        while(QHead != NULL){ //iterate through Q
             n->next = malloc(sizeof(struct node));
             n = n->next;
             n->getal = QHead->getal;
             QHead = QHead->next;
         }
-        temp->head = tempNode;
-        temp->tail = n;
+        temp->head = tempNode; //set new queue head to first node
+        temp->tail = n; //set tail to n (last node after iteration)
         n->next=NULL;
     }
+    printf("Queue na copy:\n");
+    print_list(temp->head);
     return temp;
 }
 
@@ -73,5 +76,13 @@ void voegToe (struct Queue *q, int x){
     }
     else{
         q->head = q->tail = temp;
+    }
+}
+
+void print_list(struct node *head) {
+    struct node * current = head;
+    while (current != NULL) {
+        printf("%d\n", current->getal);
+        current = current->next;
     }
 }
