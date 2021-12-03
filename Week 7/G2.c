@@ -17,7 +17,6 @@ int isLeeg(struct Queue *q);
 
 int main(){
     struct Queue *q;
-    struct Queue *R;
     q = (struct Queue *) malloc(sizeof(struct Queue));
     q->head=NULL;
     q->tail=NULL;
@@ -50,6 +49,8 @@ struct Queue* copy (struct Queue *Q){
             QHead = QHead->next;
         }
         temp->head = tempNode;
+        temp->tail = n;
+        n->next=NULL;
     }
     return temp;
 }
