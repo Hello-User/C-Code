@@ -6,8 +6,10 @@ int countMatches(const char *string, char *searchquery);
 
 int main(void){
     char str[100];
+    printf("Voer een zin in:\n");
     gets(str);
     char query[20];
+    printf("Voer een query in\n");
     gets(query);
     const char *ptr = str;
     
