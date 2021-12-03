@@ -15,6 +15,7 @@ struct Queue* copy (struct Queue *Q);
 void voegToe (struct Queue *q, int x);
 int isLeeg(struct Queue *q);
 void print_list(struct node *head);
+void print_debug(struct Queue * q);
 
 int main(){
     struct Queue *q;
@@ -25,6 +26,8 @@ int main(){
     for(i=0; i<3; i++){
         voegToe(q, i);
     }
+    printf("Original queue: \n");
+    print_debug(q);
     printf("Address nieuwe queue: %p\n", copy(q));
     q->head = NULL;
 }
@@ -54,7 +57,7 @@ struct Queue* copy (struct Queue *Q){
         n->next=NULL;
     }
     printf("Queue na copy:\n");
-    print_list(temp->head);
+    print_debug(temp);
     return temp;
 }
 
@@ -86,3 +89,26 @@ void print_list(struct node *head) {
         current = current->next;
     }
 }
+
+void print_debug(struct Queue * q){
+  if (q->head == NULL && q->tail == NULL){
+    printf("empty queue located at %p \n", q);
+    }
+  else if (q->head == q->tail){
+    printf("queue located at %p \n", q);
+    printf("single node [%d] at %p \n", q->head->getal, q->head);
+    }
+  else{
+    printf("queue located at %p \n", q);
+     struct node * temp = q->head;
+    printf("h/n1: [%d, next: %p] at %p\n", temp->getal, temp->next, temp);
+    temp = temp->next;
+    int counter = 2;
+    while(temp != q->tail){
+      printf("n%d: [%d, next: %p] at %p \n", counter, temp->getal, temp->next, temp);
+      counter++;
+      temp = temp->next;
+      }
+    printf("t/n%d: [%d, next: %p] at %p\n\n",counter, temp->getal, temp->next, temp);
+    }
+  }
