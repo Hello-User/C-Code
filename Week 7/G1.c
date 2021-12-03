@@ -29,11 +29,11 @@ int main(){
     R->head=NULL;
     R->tail=NULL;
     for(int i=0; i<3; i++){
-        voegToe(q, i);
+        //voegToe(q, i);
         voegToe(R, i);
-        printf("%d\t%d\n", tail(q), tail(R));
+        //printf("%d\t%d\n", tail(q), tail(R));
     }
-    koppelA(q, R);
+    koppelB(q, R);
 }
 
 int head(struct Queue *q){
@@ -76,12 +76,17 @@ void delHead (struct Queue *q){
 void koppelB (struct Queue *Q, struct Queue *R){
     if (Q->tail){
         Q->tail->next = R->head;
+        Q->tail=R->tail;
         R->head = NULL;
+        R->tail = NULL;
     }
     else{
         Q->head = R->head;
+        Q->tail = R->tail;
         R->head = NULL;
+        R->tail = NULL;
     }
+    //free(R);
 }
 
 void koppelA(struct Queue *Q, struct Queue *R){
